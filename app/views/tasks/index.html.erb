@@ -1,0 +1,24 @@
+<h1>任務管理系統</h1>
+
+<%= render 'form', task: @task %>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>標題</th>
+      <th>主旨</th>
+      <th>選項</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.id %></td>
+        <td><%= link_to task.title, task_path(task) %></td>
+        <td><%= link_to task.subject, task_path(task) %></td>
+        <td><%= link_to '編輯', edit_task_path(task) %> / <%= link_to '刪除', task_path(task), method: 'delete', data: { confirm: "確認要刪除嗎？" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

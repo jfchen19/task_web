@@ -1,0 +1,17 @@
+<% if @task.errors.any? %>
+  <ul>
+  <%= @task.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for(task) do |form| %>
+  <%= form.label :title, '標題' %>
+  <%= form.text_field :title %>
+
+  <%= form.label :subject, '主旨' %>
+  <%= form.text_field :subject %>
+
+  <%= form.submit %>
+<% end %>
