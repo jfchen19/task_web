@@ -7,12 +7,11 @@ RSpec.feature "Tasks", type: :feature do
     visit root_path
     fill_in "標題", with: "test title"
     fill_in "主旨", with: "test subject"
-    click_button "Create Task"
-
+    
+    expect{click_button "Create Task"}.to change{Task.all.size}.by(1)
     expect(page).to have_content "任務建立成功"
     expect(page).to have_content "test title"
     expect(page).to have_content "test subject"
-    expect(Task.all.size).to be 2
   end
 
   scenario "view a task" do
@@ -36,10 +35,10 @@ RSpec.feature "Tasks", type: :feature do
 
   scenario "delete a task" do
     visit root_path
-    click_link "刪除"
-
+    
+    expect{click_link "刪除"}.to change{Task.all.size}.by(-1)
     expect(page).to have_content "任務刪除成功"
-    expect(page).not_to have_content "test title1"
-    expect(Task.all.size).to be 0
+    expect(page).not_to have_content(task[:title])
+    expect(page).not_to have_content(task[:subject])
   end
 end
