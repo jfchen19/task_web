@@ -15,6 +15,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to '/', notice: '任務建立成功'
     else
+      @tasks = Task.all
       render :index, notice: '任務建立失敗'
     end
   end

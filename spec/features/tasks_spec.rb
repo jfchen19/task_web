@@ -3,15 +3,45 @@ require 'rails_helper'
 RSpec.feature "Tasks", type: :feature do
   let!(:task) { Task.create(title: Faker::Lorem.sentence, subject: Faker::Lorem.paragraphs)}  # let! 表示在 before 就先做了
 
-  scenario "create a new task" do
-    visit root_path
-    fill_in "標題", with: "test title"
-    fill_in "主旨", with: "test subject"
-    
-    expect{click_button "Create Task"}.to change{Task.all.size}.by(1)
-    expect(page).to have_content "任務建立成功"
-    expect(page).to have_content "test title"
-    expect(page).to have_content "test subject"
+  feature "create a new task" do
+    scenario "with title and subject" do
+      visit root_path
+      fill_in "標題", with: "test title"
+      fill_in "主旨", with: "test subject"
+      
+      expect{click_button "Create Task"}.to change{Task.all.size}.by(1)
+      expect(page).to have_content "任務建立成功"
+      expect(page).to have_content "test title"
+      expect(page).to have_content "test subject"
+    end
+
+    scenario "without title and subject" do
+      visit root_path
+      fill_in "標題", with: ""
+      fill_in "主旨", with: ""
+      click_button "Create Task"
+
+      expect(page).to have_content "Title can't be blank"
+      expect(page).to have_content "Subject can't be blank"
+    end
+
+    scenario "without title " do
+      visit root_path
+      fill_in "標題", with: ""
+      fill_in "主旨", with: "test subject"
+      click_button "Create Task"
+
+      expect(page).to have_content "Title can't be blank"
+    end
+
+    scenario "without title and subject" do
+      visit root_path
+      fill_in "標題", with: "test title"
+      fill_in "主旨", with: ""
+      click_button "Create Task"
+
+      expect(page).to have_content "Subject can't be blank"
+    end
   end
 
   scenario "view a task" do
