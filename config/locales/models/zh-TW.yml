@@ -1,6 +1,7 @@
 zh-TW:
   activerecord:
-    models: "任務"
+    models:
+      task: "任務"
     attributes:
       task:
         title: "標題"

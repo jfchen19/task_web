@@ -1,6 +1,7 @@
 en:
   activerecord:
-    models: "Task"
+    models:
+    task: "Task"
     attributes:
       task:
         title: "Title"
