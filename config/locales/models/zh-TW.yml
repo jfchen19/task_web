@@ -6,3 +6,11 @@ zh-TW:
       task:
         title: "標題"
         subject: "主旨"
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: '不能為空白！'
+            subject:
+              blank: '不能為空白！'

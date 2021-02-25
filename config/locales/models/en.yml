@@ -1,8 +1,16 @@
 en:
   activerecord:
     models:
-    task: "Task"
+      task: "Task"
     attributes:
       task:
         title: "Title"
         subject: "Subject"
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: 'CAN NOT BE BLANK!'
+            subject:
+              blank: 'CAN NOT BE BLANK!'
