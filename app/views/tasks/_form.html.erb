@@ -7,10 +7,10 @@
 <% end %>
 
 <%= form_for(task) do |form| %>
-  <%= form.label :title, '標題' %>
+  <%= form.label :title, t('tasks.title') %>
   <%= form.text_field :title %>
 
-  <%= form.label :subject, '主旨' %>
+  <%= form.label :subject, t('tasks.subject') %>
   <%= form.text_field :subject %>
 
   <%= form.submit %>

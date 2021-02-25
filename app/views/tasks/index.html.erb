@@ -1,4 +1,4 @@
-<h1>任務管理系統</h1>
+<h1><%= t('tasks.index_title')%></h1>
 
 <%= render 'form', task: @task %>
 
@@ -7,10 +7,10 @@
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th>標題</th>
-      <th>主旨</th>
-      <th>選項</th>
+      <th><%= t('tasks.id') %></th>
+      <th><%= t('tasks.title') %></th>
+      <th><%= t('tasks.subject') %></th>
+      <th><%= t('tasks.options') %></th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +19,7 @@
         <td><%= task.id %></td>
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= link_to task.subject, task_path(task) %></td>
-        <td><%= link_to '編輯', edit_task_path(task) %> / <%= link_to '刪除', task_path(task), method: 'delete', data: { confirm: "確認要刪除嗎？" } %></td>
+        <td><%= link_to t('tasks.edit'), edit_task_path(task) %> / <%= link_to t('tasks.delete'), task_path(task), method: 'delete', data: { confirm: t('tasks.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>

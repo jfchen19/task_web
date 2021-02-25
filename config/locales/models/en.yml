@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    models: "Task"
+    attributes:
+      task:
+        title: "Title"
+        subject: "Subject"
