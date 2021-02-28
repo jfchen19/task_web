@@ -13,10 +13,10 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to '/', notice: '任務建立成功'
+      redirect_to '/', notice: t('.notice')
     else
       @tasks = Task.all
-      render :index, notice: '任務建立失敗'
+      render :index
     end
   end
 
@@ -25,15 +25,15 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to '/', notice: '任務修改成功'
+      redirect_to '/', notice: t('.notice')
     else
-      render :edit, notice: '任務修改失敗'
+      render :edit
     end
   end
 
   def destroy
     @task.destroy if @task
-    redirect_to '/', notice: '任務刪除成功'
+    redirect_to '/', notice: t('.notice')
   end
 
   private

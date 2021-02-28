@@ -1,0 +1,12 @@
+zh-TW:
+  tasks:
+    index_title: "任務管理系統"
+    edit_title: "編輯任務"
+    id: "編號"
+    title: "標題"
+    subject: "主旨"
+    options: "選項"
+    edit: "修改"
+    delete: "刪除"
+    are_you_sure: "確定要刪除嗎?"
+    chinese: "中文版"

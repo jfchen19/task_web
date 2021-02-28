@@ -1,0 +1,11 @@
+en:
+  tasks:
+    index_title: "Tasks System"
+    edit_title: "Edit Tasks"
+    id: "ID"
+    title: "Title"
+    subject: "Subject"
+    options: "Options"
+    edit: "Edit"
+    delete: "Delete"
+    are_you_sure: "Are you sure?"

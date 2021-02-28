@@ -6,41 +6,41 @@ RSpec.describe Task, type: :feature do
   describe "create a new task" do
     it "with title and subject" do
       visit root_path
-      fill_in "標題", with: "test title"
-      fill_in "主旨", with: "test subject"
+      fill_in I18n.t('tasks.title'), with: "test title"
+      fill_in I18n.t('tasks.subject'), with: "test subject"
       
-      expect{click_button "Create Task"}.to change{Task.all.size}.by(1)
-      expect(page).to have_content "任務建立成功"
+      expect{find('input[name="commit"]').click}.to change{Task.all.size}.by(1)
+      expect(page).to have_content("#{I18n.t('tasks.create.notice')}")
       expect(page).to have_content "test title"
       expect(page).to have_content "test subject"
     end
 
     it "without title and subject" do
       visit root_path
-      fill_in "標題", with: ""
-      fill_in "主旨", with: ""
-      click_button "Create Task"
+      fill_in I18n.t('tasks.title'), with: ""
+      fill_in I18n.t('tasks.subject'), with: ""
+      find('input[name="commit"]').click
 
-      expect(page).to have_content "Title can't be blank"
-      expect(page).to have_content "Subject can't be blank"
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.subject')} #{I18n.t('activerecord.errors.models.task.attributes.subject.blank')}")
     end
 
     it "without title " do
       visit root_path
-      fill_in "標題", with: ""
-      fill_in "主旨", with: "test subject"
-      click_button "Create Task"
+      fill_in I18n.t('tasks.title'), with: ""
+      fill_in I18n.t('tasks.subject'), with: "test subject"
+      find('input[name="commit"]').click
 
-      expect(page).to have_content "Title can't be blank"
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
     end
 
     it "without title and subject" do
       visit root_path
-      fill_in "標題", with: "test title"
-      fill_in "主旨", with: ""
-      click_button "Create Task"
+      fill_in I18n.t('tasks.title'), with: "test title"
+      fill_in I18n.t('tasks.subject'), with: ""
+      find('input[name="commit"]').click
 
-      expect(page).to have_content "Subject can't be blank"
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.subject')} #{I18n.t('activerecord.errors.models.task.attributes.subject.blank')}")
     end
   end
 
@@ -56,12 +56,12 @@ RSpec.describe Task, type: :feature do
   describe "edit a task" do
     it do
       visit root_path
-      click_link "編輯"
-      fill_in "標題", with: "test title3"
-      fill_in "主旨", with: "test subject3"
-      click_button "Update Task"
+      click_link I18n.t('tasks.edit')
+      fill_in I18n.t('tasks.title'), with: "test title3"
+      fill_in I18n.t('tasks.subject'), with: "test subject3"
+      find('input[name="commit"]').click
   
-      expect(page).to have_content "任務修改成功"
+      expect(page).to have_content("#{I18n.t('tasks.update.notice')}")
       expect(page).to have_content "test title3"
       expect(page).to have_content "test subject3"
     end
@@ -71,8 +71,8 @@ RSpec.describe Task, type: :feature do
     it do
       visit root_path
       
-      expect{click_link "刪除"}.to change{Task.all.size}.by(-1)
-      expect(page).to have_content "任務刪除成功"
+      expect{click_link I18n.t('tasks.delete')}.to change{Task.all.size}.by(-1)
+      expect(page).to have_content("#{I18n.t('tasks.destroy.notice')}")
       expect(page).not_to have_content(task[:title])
       expect(page).not_to have_content(task[:subject])
     end

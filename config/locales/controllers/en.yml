@@ -1,0 +1,8 @@
+en:
+  tasks:
+    create:
+      notice: "Task created successfully!"
+    update:
+      notice: "Task updated successfully!"
+    destroy:
+      notice: "Task deleted successfully!"
