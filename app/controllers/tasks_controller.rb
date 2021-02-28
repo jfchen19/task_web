@@ -15,8 +15,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to '/', notice: t('.notice')
     else
-      @tasks = Task.all
-      render :index
+      redirect_to '/'
     end
   end
 
