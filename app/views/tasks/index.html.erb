@@ -10,6 +10,7 @@
       <th><%= t('tasks.id') %></th>
       <th><%= t('tasks.title') %></th>
       <th><%= t('tasks.subject') %></th>
+      <th><%= t('tasks.created_at')%></th>
       <th><%= t('tasks.options') %></th>
     </tr>
   </thead>
@@ -19,6 +20,7 @@
         <td><%= task.id %></td>
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= link_to task.subject, task_path(task) %></td>
+        <td><%= task.created_at.strftime("%Y/%b/%d %X") %></td>
         <td><%= link_to t('tasks.edit'), edit_task_path(task) %> / <%= link_to t('tasks.delete'), task_path(task), method: 'delete', data: { confirm: t('tasks.are_you_sure') } %></td>
       </tr>
     <% end %>

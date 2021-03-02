@@ -5,6 +5,7 @@ en:
     id: "ID"
     title: "Title"
     subject: "Subject"
+    created_at: "Created Time"
     options: "Options"
     edit: "Edit"
     delete: "Delete"
