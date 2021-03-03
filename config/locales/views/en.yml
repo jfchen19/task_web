@@ -10,3 +10,5 @@ en:
     edit: "Edit"
     delete: "Delete"
     are_you_sure: "Are you sure?"
+    order_by_asc: "Order By Created Time: ASC"
+    order_by_desc: "Order By Created Time: DESC"

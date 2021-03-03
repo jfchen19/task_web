@@ -2,7 +2,16 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:index, :create]
 
   def index
-    @tasks = Task.all
+    if params[:order]
+      case params[:order]
+      when "asc"
+        @tasks = Task.all.order(created_at: :asc)
+      when "desc"
+        @tasks = Task.all.order(created_at: :desc)
+      end
+    else
+      @tasks = Task.all
+    end
     @task = Task.new
   end
 
