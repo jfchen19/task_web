@@ -1,5 +1,5 @@
 <h1><%= @task.title %></h1>
 <h2><%= @task.subject %></h2>
-<h2>建立時間 <%= @task.created_at.strftime("%Y/%b/%d %X") %></h2>
-<h2>開始時間 <%= @task.start_time.strftime("%Y/%b/%d %X") %></h2>
-<h2>結束時間 <%= @task.end_time.strftime("%Y/%b/%d %X") %></h2>
+<h2><%= t('tasks.created_at') %> <%= @task.created_at.strftime("%Y/%b/%d %X") %></h2>
+<h2><%= t('tasks.start_time') %> <%= @task.start_time.strftime("%Y/%b/%d %X") %></h2>
+<h2><%= t('tasks.end_time') %> <%= @task.end_time.strftime("%Y/%b/%d %X") %></h2>

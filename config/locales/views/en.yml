@@ -12,3 +12,5 @@ en:
     are_you_sure: "Are you sure?"
     order_by_asc: "Order By Created Time: ASC"
     order_by_desc: "Order By Created Time: DESC"
+    start_time: "Start Time"
+    end_time: "End time"

@@ -6,6 +6,8 @@ zh-TW:
       task:
         title: "標題"
         subject: "主旨"
+        start_time: "開始時間"
+        end_time: "結束時間"
     errors:
       models:
         task:
@@ -14,3 +16,8 @@ zh-TW:
               blank: '不能為空白！'
             subject:
               blank: '不能為空白！'
+            start_time:
+              blank: '不能為空白！'
+            end_time:
+              blank: '不能為空白！'
+            end_time_after_start_time: '不能早於開始時間！'
