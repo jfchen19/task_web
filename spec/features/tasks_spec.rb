@@ -43,9 +43,7 @@ RSpec.describe Task, type: :feature do
   end
 
   describe "had a task already" do
-    let(:title) { Faker::Lorem.sentence }
-    let(:subject) { Faker::Lorem.paragraphs }
-    let!(:task) { Task.create(title: title, subject: subject)}  # let! 表示在 before 就先做了
+    let!(:task) { FactoryBot.create(:task) }  # let! 表示在 before 就先做了
 
     it "view a task" do
       visit task_path(task)
@@ -77,7 +75,7 @@ RSpec.describe Task, type: :feature do
   end
 
   describe "order by created time" do
-    before :each do
+    before do
       1.upto(3) do |i|
         Task.create(title: "title #{i}", subject: "subject #{i}")
       end
