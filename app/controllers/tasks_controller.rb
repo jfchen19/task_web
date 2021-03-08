@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:index, :create]
 
   def index
-    @tasks = Task.find_order(params[:order])
+    @tasks = Task.with_order(params[:order])
     @task = Task.new
   end
 
