@@ -2,19 +2,25 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :feature do
   describe "create a new task" do
-    it "with title and subject" do
+    before do
       visit root_path
+    end
+
+    it "with title and subject" do
       fill_in I18n.t('tasks.title'), with: "test title"
       fill_in I18n.t('tasks.subject'), with: "test subject"
+      fill_in I18n.t('tasks.start_time'), with: "2021/Mar/08 22:29:00"
+      fill_in I18n.t('tasks.end_time'), with: "2021/Mar/23 22:35:00"
       
       expect{find('input[name="commit"]').click}.to change{Task.all.size}.by(1)
       expect(page).to have_content("#{I18n.t('tasks.create.notice')}")
       expect(page).to have_content "test title"
       expect(page).to have_content "test subject"
+      expect(page).to have_content "2021/Mar/08 22:29:00"
+      expect(page).to have_content "2021/Mar/23 22:35:00"
     end
 
     it "without title and subject" do
-      visit root_path
       fill_in I18n.t('tasks.title'), with: ""
       fill_in I18n.t('tasks.subject'), with: ""
       find('input[name="commit"]').click
@@ -24,7 +30,6 @@ RSpec.describe Task, type: :feature do
     end
 
     it "without title " do
-      visit root_path
       fill_in I18n.t('tasks.title'), with: ""
       fill_in I18n.t('tasks.subject'), with: "test subject"
       find('input[name="commit"]').click
@@ -32,13 +37,33 @@ RSpec.describe Task, type: :feature do
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
     end
 
-    it "without title and subject" do
-      visit root_path
+    it "without subject" do
       fill_in I18n.t('tasks.title'), with: "test title"
       fill_in I18n.t('tasks.subject'), with: ""
       find('input[name="commit"]').click
 
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.subject')} #{I18n.t('activerecord.errors.models.task.attributes.subject.blank')}")
+    end
+
+    it "without start time and end time" do
+      fill_in I18n.t('tasks.title'), with: "test title"
+      fill_in I18n.t('tasks.subject'), with: "test subject"
+      fill_in I18n.t('tasks.start_time'), with: ""
+      fill_in I18n.t('tasks.end_time'), with: ""
+      find('input[name="commit"]').click
+
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.start_time')} #{I18n.t('activerecord.errors.models.task.attributes.start_time.blank')}")
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.end_time')} #{I18n.t('activerecord.errors.models.task.attributes.end_time.blank')}")
+    end
+
+    it "start time after end time" do
+      fill_in I18n.t('tasks.title'), with: "test title"
+      fill_in I18n.t('tasks.subject'), with: "test subject"
+      fill_in I18n.t('tasks.start_time'), with: "2021/Mar/23 22:35:00"
+      fill_in I18n.t('tasks.end_time'), with: "2021/Mar/08 22:29:00"
+      find('input[name="commit"]').click
+
+      expect(page).to have_content("#{I18n.t('activerecord.attributes.task.end_time')} #{I18n.t('activerecord.errors.models.task.attributes.end_time_after_start_time')}")
     end
   end
 
@@ -77,7 +102,7 @@ RSpec.describe Task, type: :feature do
   describe "order by created time" do
     before do
       1.upto(3) do |i|
-        Task.create(title: "title #{i}", subject: "subject #{i}")
+        Task.create(title: "title #{i}", subject: "subject #{i}", start_time: "2021/Mar/0#{i} 22:29:00", end_time: "2021/Mar/2#{i} 22:35:00")
       end
       visit root_path
     end

@@ -12,3 +12,5 @@ zh-TW:
     are_you_sure: "確定要刪除嗎?"
     order_by_asc: "以建立時間正向排序"
     order_by_desc: "以建立時間反向排序"
+    start_time: "開始時間"
+    end_time: "結束時間"

@@ -13,5 +13,11 @@
   <%= form.label :subject, t('tasks.subject') %>
   <%= form.text_field :subject %>
 
+  <%= form.label :start_time, t('tasks.start_time') %>
+  <%= form.datetime_field :start_time %>
+
+  <%= form.label :end_time, t('tasks.end_time') %>
+  <%= form.datetime_field :end_time %>
+
   <%= form.submit %>
 <% end %>
