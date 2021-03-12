@@ -19,6 +19,6 @@
 | --------   | --------  |
 | id         | integer   |
 | title      | string    |
-| subject    | datetime  |
+| subject    | string  |
 | start_time | datetime  |
 | end_time   | datetime  |
