@@ -1,16 +1,15 @@
 @import "bootstrap/scss/bootstrap";
-body{
+body {
   margin: 0 20px;
 }
 .field_with_errors {
   display: inline;
   color: red;
   
-  input[type=text] {
+  input[type=text], input[type=datetime-local] {
     border: 1px solid red;
   }
-
-  input[type=datetime-local] {
-    border: 1px solid red;
-  }
+}
+h1 {
+margin-top: 10px;
 }
