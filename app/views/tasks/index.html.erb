@@ -6,6 +6,11 @@
 
 <br>
 
+<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_asc'), root_path(order: "asc") %></button>
+<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_desc'), root_path(order: "desc") %></button>
+
+<br>
+
 <table class="table">
   <thead>
     <tr>

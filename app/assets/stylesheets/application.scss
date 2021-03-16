@@ -13,3 +13,9 @@ body {
 h1 {
 margin-top: 10px;
 }
+button {
+  display: inline;
+}
+button a , button a:hover {
+  color: white;
+}
