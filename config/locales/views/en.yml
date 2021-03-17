@@ -17,3 +17,5 @@ en:
     home_page: "Home"
     language: "Language"
     sort: "Sort"
+    sort_by_endtime_asc: "Sort By End Time: ASC"
+    sort_by_endtime_desc: "Sort By End Time: DESC"
