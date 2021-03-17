@@ -99,7 +99,7 @@ RSpec.describe Task, type: :feature do
     end
   end
 
-  describe "sort by created time" do
+  describe "sort" do
     before do
       1.upto(3) do |i|
         Task.create(title: "title #{i}", subject: "subject #{i}", start_time: "2021/Mar/0#{i} 22:29:00", end_time: "2021/Mar/2#{i} 22:35:00")
@@ -107,13 +107,23 @@ RSpec.describe Task, type: :feature do
       visit root_path
     end
 
-    it "sort by asc/desc" do
+    it "sort by created_at" do
       expect(page).to have_content(/title 1.*title 2.*title 3/)
 
       click_link I18n.t('tasks.sort_by_desc')
       expect(page).to have_content(/title 3.*title 2.*title 1/)
 
       click_link I18n.t('tasks.sort_by_asc')
+      expect(page).to have_content(/title 1.*title 2.*title 3/)
+    end
+
+    it "sort by end_time" do
+      expect(page).to have_content(/title 1.*title 2.*title 3/)
+
+      click_link I18n.t('tasks.sort_by_endtime_desc')
+      expect(page).to have_content(/title 3.*title 2.*title 1/)
+
+      click_link I18n.t('tasks.sort_by_endtime_asc')
       expect(page).to have_content(/title 1.*title 2.*title 3/)
     end
   end
