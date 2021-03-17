@@ -2,7 +2,8 @@ class Task < ApplicationRecord
   validates :title, :subject, :start_time, :end_time, presence: true
   validate :end_time_after_start_time
 
-  scope :with_order, -> (order) { order(created_at: order) if order}
+  scope :with_created_at, -> (param) { order(created_at: param) if param }
+  scope :with_end_time, -> (param) {order(end_time: param) if param }
 
   def end_time_after_start_time
     return if end_time.blank? || start_time.blank?

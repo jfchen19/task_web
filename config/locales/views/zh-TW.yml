@@ -17,3 +17,5 @@ zh-TW:
     home_page: "首頁"
     language: "語言"
     sort: "排序"
+    sort_by_endtime_asc: "以結束時間正向排序"
+    sort_by_endtime_desc: "以結束時間反向排序"
