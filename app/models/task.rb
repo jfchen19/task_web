@@ -13,4 +13,18 @@ class Task < ApplicationRecord
       # TODO 這裡的錯誤訊息用英文寫死，翻譯的話到 view 再翻譯
     end
   end
+
+  include AASM
+  aasm column: :state, no_direct_assigment: true do
+    state :pending, initial: true
+    state :processing, :completed
+
+    event :start do
+      transitions from: :pending, to: :processing
+    end
+
+    event :complete do
+      transitions from: :processing, to: :completed
+    end
+  end
 end

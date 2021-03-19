@@ -36,6 +36,16 @@ class TasksController < ApplicationController
     redirect_to '/', notice: t('.notice')
   end
 
+  def start
+    @task.start! if @task.may_start?
+    redirect_to '/'
+  end
+
+  def complete
+    @task.complete! if @task.may_complete?
+    redirect_to '/'
+  end
+
   private
   def find_task
     @task = Task.find(params[:id])
