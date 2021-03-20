@@ -16,8 +16,8 @@ RSpec.describe Task, type: :feature do
       expect(page).to have_content("#{I18n.t('tasks.create.notice')}")
       expect(page).to have_content "test title"
       expect(page).to have_content "test subject"
-      expect(page).to have_content "2021/Mar/08 22:29:00"
-      expect(page).to have_content "2021/Mar/23 22:35:00"
+      expect(page).to have_content "2021 / Mar / 08 22:29:00"
+      expect(page).to have_content "2021 / Mar / 23 22:35:00"
     end
 
     it "without title and subject" do
@@ -96,6 +96,16 @@ RSpec.describe Task, type: :feature do
       expect(page).to have_content("#{I18n.t('tasks.destroy.notice')}")
       expect(page).not_to have_content(task[:title])
       expect(page).not_to have_content(task[:subject])
+    end
+
+    it "change task state" do
+      visit root_path
+      
+      expect(page).to have_content("#{I18n.t('tasks.task_state.pending')}")
+      click_link I18n.t('tasks.start')
+      expect(page).to have_content("#{I18n.t('tasks.task_state.processing')}")
+      click_link I18n.t('tasks.complete')
+      expect(page).to have_content("#{I18n.t('tasks.task_state.completed')}")
     end
   end
 
