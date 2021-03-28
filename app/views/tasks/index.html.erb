@@ -10,6 +10,19 @@
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_desc'), root_path(order_by_created_time: "desc") %></button>
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_asc'), root_path(order_by_end_time: "asc") %></button>
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_desc'), root_path(order_by_end_time: "desc") %></button>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= t('tasks.search_by_state') %>
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to t('tasks.all_tasks'), root_path, class: "dropdown-item" %>
+    <%= link_to t('tasks.task_state.pending'), root_path(search_by_state: "pending"), class: "dropdown-item" %>
+    <%= link_to t('tasks.task_state.processing'), root_path(search_by_state: "processing"), class: "dropdown-item" %>
+    <%= link_to t('tasks.task_state.completed'), root_path(search_by_state: "completed"), class: "dropdown-item" %>
+  </div>
+</div>
+
 <br>
 
 <table class="table">

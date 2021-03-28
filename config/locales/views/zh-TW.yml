@@ -28,3 +28,5 @@ zh-TW:
       completed: "已完成"
     search_by_title_or_subject: "以標題或主旨進行搜尋"
     search: "搜尋"
+    search_by_state: "以狀態搜尋"
+    all_tasks: "顯示所有任務"

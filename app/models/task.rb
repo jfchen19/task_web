@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   scope :with_created_at, -> (param) { order(created_at: param) if param }
   scope :with_end_time, -> (param) { order(end_time: param) if param }
   scope :search_task, -> (keyword) { where("title LIKE ? OR subject LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword }
+  scope :search_by_state, -> (state) { where("state LIKE ?", "%#{state}%") if state }
 
   def end_time_after_start_time
     return if end_time.blank? || start_time.blank?
