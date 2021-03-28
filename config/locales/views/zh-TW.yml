@@ -26,3 +26,5 @@ zh-TW:
       pending: "待處理"
       processing: "進行中"
       completed: "已完成"
+    search_by_title_or_subject: "以標題或主旨進行搜尋"
+    search: "搜尋"

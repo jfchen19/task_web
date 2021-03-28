@@ -26,3 +26,5 @@ en:
       pending: "Pending"
       processing: "Processing"
       completed: "Completed"
+    search_by_title_or_subject: "Search by title or subject"
+    search: "Search"

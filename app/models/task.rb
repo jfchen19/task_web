@@ -3,7 +3,8 @@ class Task < ApplicationRecord
   validate :end_time_after_start_time
 
   scope :with_created_at, -> (param) { order(created_at: param) if param }
-  scope :with_end_time, -> (param) {order(end_time: param) if param }
+  scope :with_end_time, -> (param) { order(end_time: param) if param }
+  scope :search_task, -> (keyword) { where("title LIKE ? OR subject LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword }
 
   def end_time_after_start_time
     return if end_time.blank? || start_time.blank?
