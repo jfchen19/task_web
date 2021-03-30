@@ -17,4 +17,30 @@ RSpec.describe Task, type: :model do
       expect{task_with_invalid_input.save}.to change{task_with_invalid_input.errors.full_messages}.from([]).to(["#{I18n.t('activerecord.attributes.task.end_time')} #{I18n.t('activerecord.errors.models.task.attributes.end_time_after_start_time')}"])
     end
   end
+
+  describe "task state transition" do
+    let! (:task) { FactoryBot.create(:task) }
+
+    it "original state" do
+      expect(task).to have_state(:pending)
+      expect(task).not_to have_state(:processing)
+      expect(task).not_to have_state(:completed)
+    end
+
+    it "change state from pending to processing" do
+      expect(task).to transition_from(:pending).to(:processing).on_event(:start)
+
+      expect(task).to have_state(:processing)
+      expect(task).not_to have_state(:pending)
+      expect(task).not_to have_state(:completed)
+    end
+
+    it "change state from processing to completed" do
+      expect(task).to transition_from(:processing).to(:completed).on_event(:complete)
+
+      expect(task).to have_state(:completed)
+      expect(task).not_to have_state(:processing)
+      expect(task).not_to have_state(:pending)
+    end
+  end
 end
