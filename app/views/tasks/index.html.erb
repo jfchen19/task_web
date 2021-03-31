@@ -10,6 +10,19 @@
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_desc'), root_path(order_by_created_time: "desc") %></button>
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_asc'), root_path(order_by_end_time: "asc") %></button>
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_desc'), root_path(order_by_end_time: "desc") %></button>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-primary btn-sm dropdown-toggle search_by_state" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= t('tasks.search_by_state') %>
+  </button>
+  <div class="dropdown-menu">
+    <%= link_to t('tasks.all_tasks'), root_path, class: "dropdown-item" %>
+    <%= link_to t('tasks.task_state.pending'), root_path(search_by_state: "pending"), class: "dropdown-item pending" %>
+    <%= link_to t('tasks.task_state.processing'), root_path(search_by_state: "processing"), class: "dropdown-item processing" %>
+    <%= link_to t('tasks.task_state.completed'), root_path(search_by_state: "completed"), class: "dropdown-item completed" %>
+  </div>
+</div>
+
 <br>
 
 <table class="table">
@@ -20,7 +33,8 @@
       <th scope="col"><%= t('tasks.subject') %></th>
       <th scope="col"><%= t('tasks.created_at') %></th>
       <th scope="col"><%= t('tasks.start_time') %></th>
-      <th scope="col"><%= t('tasks.end_time')%></th>
+      <th scope="col"><%= t('tasks.end_time') %></th>
+      <th scope="col"><%= t('tasks.state')%></th>
       <th scope="col"><%= t('tasks.options') %></th>
     </tr>
   </thead>
@@ -30,10 +44,15 @@
         <th scope="row"><%= task.id %></th>
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= link_to task.subject, task_path(task) %></td>
-        <td><%= task.created_at.strftime("%Y/%b/%d %X") %></td>
-        <td><%= task.start_time.strftime("%Y/%b/%d %X") %></td>
-        <td><%= task.end_time.strftime("%Y/%b/%d %X") %></td>
-        <td><%= link_to t('tasks.edit'), edit_task_path(task) %> / <%= link_to t('tasks.delete'), task_path(task), method: 'delete', data: { confirm: t('tasks.are_you_sure') } %></td>
+        <td><%= task.created_at.strftime("%Y / %b / %d %X") %></td>
+        <td><%= task.start_time.strftime("%Y / %b / %d %X") %></td>
+        <td><%= task.end_time.strftime("%Y / %b / %d %X") %></td>
+        <td><%= t("tasks.task_state.#{task.state}") %></td>
+        <td>
+        <%= link_to t('tasks.start'), start_task_path(task) if task.state == 'pending' %>
+        <%= link_to t('tasks.complete'), complete_task_path(task) if task.state == 'processing' %>
+        <%= link_to t('tasks.edit'), edit_task_path(task) %>
+        <%= link_to t('tasks.delete'), task_path(task), method: 'delete', data: { confirm: t('tasks.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>

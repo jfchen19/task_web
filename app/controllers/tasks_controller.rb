@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:index, :create]
 
   def index
-    @tasks = Task.with_created_at(params[:order_by_created_time]).with_end_time(params[:order_by_end_time])
+    @tasks = Task.sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%")
     @task = Task.new
   end
 
@@ -34,6 +34,16 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy if @task
     redirect_to '/', notice: t('.notice')
+  end
+
+  def start
+    @task.start! if @task.may_start?
+    redirect_to '/'
+  end
+
+  def complete
+    @task.complete! if @task.may_complete?
+    redirect_to '/'
   end
 
   private

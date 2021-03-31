@@ -19,10 +19,11 @@
         </div>
       </li>
     </ul>
-    <%# step15 再寫查詢 %>
-    <%# <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> %>
+    <form class="form-inline my-2 my-lg-0">
+      <%= form_tag root_path, method: :get do %>
+        <%= text_field_tag "keyword", nil, placeholder: t('tasks.search_by_title_or_subject'), class: "form-control mr-sm-2" %>
+        <%= submit_tag t('tasks.search'), class: "search btn btn-outline-success my-2 my-sm-0" %>
+      <% end %>
+    </form>
   </div>
 </nav>

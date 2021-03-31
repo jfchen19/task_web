@@ -12,18 +12,18 @@ RSpec.describe Task, type: :feature do
       fill_in I18n.t('tasks.start_time'), with: "2021/Mar/08 22:29:00"
       fill_in I18n.t('tasks.end_time'), with: "2021/Mar/23 22:35:00"
       
-      expect{find('input[name="commit"]').click}.to change{Task.all.size}.by(1)
+      expect{find('input[class="task"]').click}.to change{Task.all.size}.by(1)
       expect(page).to have_content("#{I18n.t('tasks.create.notice')}")
       expect(page).to have_content "test title"
       expect(page).to have_content "test subject"
-      expect(page).to have_content "2021/Mar/08 22:29:00"
-      expect(page).to have_content "2021/Mar/23 22:35:00"
+      expect(page).to have_content "2021 / Mar / 08 22:29:00"
+      expect(page).to have_content "2021 / Mar / 23 22:35:00"
     end
 
     it "without title and subject" do
       fill_in I18n.t('tasks.title'), with: ""
       fill_in I18n.t('tasks.subject'), with: ""
-      find('input[name="commit"]').click
+      find('input[class="task"]').click
 
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.subject')} #{I18n.t('activerecord.errors.models.task.attributes.subject.blank')}")
@@ -32,7 +32,7 @@ RSpec.describe Task, type: :feature do
     it "without title " do
       fill_in I18n.t('tasks.title'), with: ""
       fill_in I18n.t('tasks.subject'), with: "test subject"
-      find('input[name="commit"]').click
+      find('input[class="task"]').click
 
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.title')} #{I18n.t('activerecord.errors.models.task.attributes.title.blank')}")
     end
@@ -40,7 +40,7 @@ RSpec.describe Task, type: :feature do
     it "without subject" do
       fill_in I18n.t('tasks.title'), with: "test title"
       fill_in I18n.t('tasks.subject'), with: ""
-      find('input[name="commit"]').click
+      find('input[class="task"]').click
 
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.subject')} #{I18n.t('activerecord.errors.models.task.attributes.subject.blank')}")
     end
@@ -50,7 +50,7 @@ RSpec.describe Task, type: :feature do
       fill_in I18n.t('tasks.subject'), with: "test subject"
       fill_in I18n.t('tasks.start_time'), with: ""
       fill_in I18n.t('tasks.end_time'), with: ""
-      find('input[name="commit"]').click
+      find('input[class="task"]').click
 
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.start_time')} #{I18n.t('activerecord.errors.models.task.attributes.start_time.blank')}")
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.end_time')} #{I18n.t('activerecord.errors.models.task.attributes.end_time.blank')}")
@@ -61,7 +61,7 @@ RSpec.describe Task, type: :feature do
       fill_in I18n.t('tasks.subject'), with: "test subject"
       fill_in I18n.t('tasks.start_time'), with: "2021/Mar/23 22:35:00"
       fill_in I18n.t('tasks.end_time'), with: "2021/Mar/08 22:29:00"
-      find('input[name="commit"]').click
+      find('input[class="task"]').click
 
       expect(page).to have_content("#{I18n.t('activerecord.attributes.task.end_time')} #{I18n.t('activerecord.errors.models.task.attributes.end_time_after_start_time')}")
     end
@@ -82,7 +82,7 @@ RSpec.describe Task, type: :feature do
       click_link I18n.t('tasks.edit')
       fill_in I18n.t('tasks.title'), with: "test title3"
       fill_in I18n.t('tasks.subject'), with: "test subject3"
-      find('input[name="commit"]').click
+      find('input[class="task"]').click
   
       expect(page).to have_content("#{I18n.t('tasks.update.notice')}")
       expect(page).to have_content "test title3"
@@ -97,6 +97,59 @@ RSpec.describe Task, type: :feature do
       expect(page).not_to have_content(task[:title])
       expect(page).not_to have_content(task[:subject])
     end
+
+    it "change task state" do
+      visit root_path
+      
+      expect(page).to have_content I18n.t('tasks.task_state.pending')
+      click_link I18n.t('tasks.start')
+      expect(page).to have_content I18n.t('tasks.task_state.processing')
+      click_link I18n.t('tasks.complete')
+      expect(page).to have_content I18n.t('tasks.task_state.completed')
+    end
+
+    it "search by state" do
+      visit root_path
+      click_button I18n.t('tasks.search_by_state')
+      click_link I18n.t('tasks.task_state.pending')
+      expect(page).to have_content(task[:title])
+      expect(page).to have_content(task[:subject])
+      expect(page).to have_content I18n.t('tasks.task_state.pending')
+
+      click_link I18n.t('tasks.start')
+      click_on I18n.t('tasks.search_by_state')
+      click_on I18n.t('tasks.task_state.processing')
+      expect(page).to have_content(task[:title])
+      expect(page).to have_content(task[:subject])
+      expect(page).to have_content I18n.t('tasks.task_state.processing')
+
+      click_link I18n.t('tasks.complete')
+      click_on I18n.t('tasks.search_by_state')
+      click_on I18n.t('tasks.task_state.completed')
+      expect(page).to have_content(task[:title])
+      expect(page).to have_content(task[:subject])
+      expect(page).to have_content I18n.t('tasks.task_state.completed')
+    end
+
+    it "search by title" do
+      visit root_path
+
+      find('input[name="keyword"]').set(task[:title])
+      click_button I18n.t('tasks.search')
+
+      expect(page).to have_content(task[:title])
+      expect(page).to have_content(task[:subject])
+    end
+
+    it "search by subject" do
+      visit root_path
+
+      find('input[name="keyword"]').set(task[:subject])
+      click_button I18n.t('tasks.search')
+
+      expect(page).to have_content(task[:title])
+      expect(page).to have_content(task[:subject])
+    end
   end
 
   describe "sort" do
@@ -108,7 +161,7 @@ RSpec.describe Task, type: :feature do
     end
 
     it "sort by created_at" do
-      expect(page).to have_content(/title 1.*title 2.*title 3/)
+      expect(page).to have_content(/title 3.*title 2.*title 1/)
 
       click_link I18n.t('tasks.sort_by_desc')
       expect(page).to have_content(/title 3.*title 2.*title 1/)
@@ -118,7 +171,7 @@ RSpec.describe Task, type: :feature do
     end
 
     it "sort by end_time" do
-      expect(page).to have_content(/title 1.*title 2.*title 3/)
+      expect(page).to have_content(/title 3.*title 2.*title 1/)
 
       click_link I18n.t('tasks.sort_by_endtime_desc')
       expect(page).to have_content(/title 3.*title 2.*title 1/)
@@ -126,5 +179,5 @@ RSpec.describe Task, type: :feature do
       click_link I18n.t('tasks.sort_by_endtime_asc')
       expect(page).to have_content(/title 1.*title 2.*title 3/)
     end
-  end
+  end  
 end
