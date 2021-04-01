@@ -6,7 +6,7 @@
 * 任務列表，並可依建立時間及結束時間進行排序
 * 自由切換全站中英文
 * 可設定任務狀態（待處理、進行中、已完成）
-* 網站部署於[Heroku](http://tasksweb.herokuapp.com/)
+* 網站部署於[Heroku](http://taskwebsite.herokuapp.com/)
 * RSpec: Feature test and Model test
 * Bootstrap 4.6
 
