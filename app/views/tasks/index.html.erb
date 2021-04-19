@@ -10,6 +10,8 @@
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_desc'), root_path(order_by_created_time: "desc") %></button>
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_asc'), root_path(order_by_end_time: "asc") %></button>
 <button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_desc'), root_path(order_by_end_time: "desc") %></button>
+<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_asc'), root_path(order_by_priority: "asc") %></button>
+<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_desc'), root_path(order_by_priority: "desc") %></button>
 
 <div class="btn-group">
   <button type="button" class="btn btn-primary btn-sm dropdown-toggle search_by_state" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,10 +33,11 @@
       <th scope="col"><%= t('tasks.id') %></th>
       <th scope="col"><%= t('tasks.title') %></th>
       <th scope="col"><%= t('tasks.subject') %></th>
+      <th scope="col"><%= t('tasks.priority') %></th>
       <th scope="col"><%= t('tasks.created_at') %></th>
       <th scope="col"><%= t('tasks.start_time') %></th>
       <th scope="col"><%= t('tasks.end_time') %></th>
-      <th scope="col"><%= t('tasks.state')%></th>
+      <th scope="col"><%= t('tasks.state') %></th>
       <th scope="col"><%= t('tasks.options') %></th>
     </tr>
   </thead>
@@ -44,6 +47,7 @@
         <th scope="row"><%= task.id %></th>
         <td><%= link_to task.title, task_path(task) %></td>
         <td><%= link_to task.subject, task_path(task) %></td>
+        <td><%= t("tasks.task_priority.#{task.priority}") %></td>
         <td><%= task.created_at.strftime("%Y / %b / %d %X") %></td>
         <td><%= task.start_time.strftime("%Y / %b / %d %X") %></td>
         <td><%= task.end_time.strftime("%Y / %b / %d %X") %></td>

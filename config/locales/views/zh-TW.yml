@@ -30,3 +30,10 @@ zh-TW:
     search: "搜尋"
     search_by_state: "以狀態搜尋"
     all_tasks: "顯示所有任務"
+    priority: "優先順序"
+    task_priority:
+      low: "低"
+      medium: "中"
+      high: "高"
+    sort_by_priority_asc: "依優先順序從低到高排序"
+    sort_by_priority_desc: "依優先順序從高到低排序"

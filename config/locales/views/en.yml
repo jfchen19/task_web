@@ -30,3 +30,10 @@ en:
     search: "Search"
     search_by_state: "Search by state"
     all_tasks: "All tasks"
+    priority: "Priority"
+    task_priority:
+      low: "Low"
+      medium: "Medium"
+      high: "High"
+    sort_by_priority_asc: "Sort by Priority: ASC"
+    sort_by_priority_desc: "Sort by Priority: DESC"
