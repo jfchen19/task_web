@@ -13,6 +13,9 @@
   <%= form.label :subject, t('tasks.subject') %>
   <%= form.text_field :subject %>
 
+  <%= form.label :priority, t('tasks.priority') %>
+  <%= form.select :priority, options_for_select(Task.priorities.keys, "low") %>
+
   <%= form.label :start_time, t('tasks.start_time') %>
   <%= form.datetime_field :start_time %>
 
