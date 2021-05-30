@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:index, :create]
 
   def index
-    @tasks = Task.sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
+    task_index
     @task = Task.new
   end
 
@@ -15,7 +15,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to '/', notice: t('.notice')
     else
-      @tasks = Task.all
+      task_index
       render :index
     end
   end
@@ -53,5 +53,9 @@ class TasksController < ApplicationController
   
   def task_params
     params.require(:task).permit(:title, :subject, :start_time, :end_time, :priority)
+  end
+
+  def task_index
+    @tasks = Task.sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
   end
 end
