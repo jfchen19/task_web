@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:index, :create]
 
   def index
-    @tasks = Task.sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%")
+    @tasks = Task.sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
     @task = Task.new
   end
 
