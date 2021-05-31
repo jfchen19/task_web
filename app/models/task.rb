@@ -1,4 +1,6 @@
 class Task < ApplicationRecord
+  belongs_to :user
+
   validates :title, :subject, :start_time, :end_time, :priority, presence: true
   validate :end_time_after_start_time
 
