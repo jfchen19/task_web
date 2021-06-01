@@ -6,4 +6,7 @@ Rails.application.routes.draw do
       get :complete
     end
   end
+
+  get 'users/sign_up', to: 'registrations#new', as: 'registration'
+  post '/users', to: 'registrations#create'
 end
