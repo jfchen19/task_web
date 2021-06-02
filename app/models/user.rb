@@ -9,6 +9,11 @@ class User < ApplicationRecord
                        confirmation: true
   validates :nickname, presence: true
 
+  def self.login(user)
+    pw = Digest::SHA1.hexdigest("aaa#{user[:password]}zzz")
+    User.find_by(email: user[:email], password: pw)
+  end
+
   private
   def encrypt_password
     self.password = Digest::SHA1.hexdigest("aaa#{self.password}zzz")
