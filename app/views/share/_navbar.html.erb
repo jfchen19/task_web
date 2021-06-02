@@ -20,7 +20,8 @@
         </div>
       </li>
 
-        <% if session[:user_session].present? %>
+        <% if current_user %>
+          <%= current_user.nickname %>
           <%= link_to '登出', logout_path, medthod: 'delete', class: "nav-link" %>
         <% else %>
             <%= link_to '註冊', registration_path, class: "nav-link" %>  
