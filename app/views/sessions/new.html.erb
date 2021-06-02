@@ -1,11 +1,13 @@
 <h1>會員登入</h1>
 
 <%= form_for(@user, url: login_path, method: 'post') do |form| %>
-  <%= form.label :email, '信箱' %>
-  <%= form.text_field :email %>
-
-  <%= form.label :password, '密碼' %>
-  <%= form.password_field :password %>
-
-  <%= form.submit '登入' %>
+  <div class="form-group">
+    <%= form.label :email, '信箱' %>
+    <%= form.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :password, '密碼' %>
+    <%= form.password_field :password, class: "form-control" %>
+  </div>
+  <%= form.submit '登入', class: "btn btn-primary" %>
 <% end %>
