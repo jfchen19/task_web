@@ -2,8 +2,13 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:index, :create]
 
   def index
-    task_index
-    @task = Task.new
+    authorize Task
+    if current_user.present?
+      task_index
+      @task = Task.new
+    else
+      redirect_to session_path
+    end
   end
 
   def show
