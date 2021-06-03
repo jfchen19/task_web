@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def index
     if current_user.present?
-      task_index 
+      task_index
       @task = Task.new
     else
       redirect_to session_path, notice: '請先登入'
@@ -60,6 +60,6 @@ class TasksController < ApplicationController
   end
 
   def task_index
-    @tasks = Task.sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
+    @tasks = current_user.tasks.includes(:user).sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
   end
 end
