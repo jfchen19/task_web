@@ -2,12 +2,11 @@ class TasksController < ApplicationController
   before_action :find_task, except: [:index, :create]
 
   def index
-    authorize Task
     if current_user.present?
-      task_index
+      task_index 
       @task = Task.new
     else
-      redirect_to session_path
+      redirect_to session_path, notice: '請先登入'
     end
   end
 
@@ -15,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
 
     if @task.save
       redirect_to '/', notice: t('.notice')
