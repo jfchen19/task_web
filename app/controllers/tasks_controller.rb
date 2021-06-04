@@ -20,7 +20,7 @@ class TasksController < ApplicationController
       redirect_to '/', notice: t('.notice')
     else
       task_index
-      redirect_to :index
+      render :index
     end
   end
 

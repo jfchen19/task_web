@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :feature do
-  describe "create a new task" do
-    before do
-      visit root_path
-    end
+  let(:password) { Faker::Internet.password }
+  let!(:user) { FactoryBot.create(:user, password: password) }
 
+  before do
+    visit session_path
+    fill_in I18n.t('tasks.email'), with: user.email
+    fill_in I18n.t('tasks.password'), with: password
+    find('input[type="submit"]').click
+  end
+  
+  describe "create a new task" do
     it "with title and subject" do
       fill_in I18n.t('tasks.title'), with: "test title"
       fill_in I18n.t('tasks.subject'), with: "test subject"
@@ -68,7 +74,7 @@ RSpec.describe Task, type: :feature do
   end
 
   describe "had a task already" do
-    let!(:task) { FactoryBot.create(:task) }  # let! 表示在 before 就先做了
+    let!(:task) { FactoryBot.create(:task, user_id: user.id) }  # let! 表示在 before 就先做了
 
     it "view a task" do
       visit task_path(task)
@@ -155,7 +161,7 @@ RSpec.describe Task, type: :feature do
   describe "sort" do
     before do
       0.upto(2) do |i|
-        Task.create(title: "title #{i}", subject: "subject #{i}",priority: "#{i}".to_f, start_time: "2021/Mar/1#{i} 22:29:00", end_time: "2021/Mar/2#{i} 22:35:00")
+        Task.create(title: "title #{i}", subject: "subject #{i}",priority: "#{i}".to_f, start_time: "2021/Mar/1#{i} 22:29:00", end_time: "2021/Mar/2#{i} 22:35:00", user_id: user.id)
       end
       visit root_path
     end
