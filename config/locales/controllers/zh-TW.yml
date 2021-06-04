@@ -1,8 +1,19 @@
 zh-TW:
   tasks:
+    index:
+      notice: "請先登入喔！"
     create:
       notice: "任務建立成功！"
     update:
       notice: "任務更新成功！"
     destroy:
       notice: "任務刪除成功！"
+  registrations:
+    create:
+      notice: "會員註冊成功！"
+  sessions:
+    create:
+      notice: "會員登入成功！"
+      fail: "帳號或密碼有誤，請重新輸入！"
+  destroy:
+    notice: '會員登出成功！'

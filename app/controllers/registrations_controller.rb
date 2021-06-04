@@ -7,9 +7,9 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_parmas)
 
     if @user.save
-      redirect_to root_path, notice: "註冊成功"
+      redirect_to session_path, notice: t('.notice')
     else
-      render :new, notice: "註冊失敗"
+      render :new
     end
   end
 

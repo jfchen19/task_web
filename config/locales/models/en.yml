@@ -2,6 +2,7 @@ en:
   activerecord:
     models:
       task: "Task"
+      user: "User"
     attributes:
       task:
         title: "Title"
@@ -21,3 +22,14 @@ en:
             end_time:
               blank: 'CAN NOT BE BLANK!'
             end_time_after_start_time: 'must be after start time!'
+        user:
+          attributes:
+            email:
+              blank: 'CAN NOT BE BLANK!'
+            password:
+              blank: 'CAN NOT BE BLANK!'
+            password_confirmation:
+              blank: 'CAN NOT BE BLANK!'
+            nickname:
+              blank: 'CAN NOT BE BLANK!'
+

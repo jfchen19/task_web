@@ -6,7 +6,7 @@ class TasksController < ApplicationController
       task_index
       @task = Task.new
     else
-      redirect_to session_path, notice: '請先登入'
+      redirect_to session_path, notice: t('.notice')
     end
   end
 
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
       redirect_to '/', notice: t('.notice')
     else
       task_index
-      render :index
+      redirect_to :index
     end
   end
 

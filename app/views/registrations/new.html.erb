@@ -1,4 +1,4 @@
-<h1>會員註冊</h1>
+<h1><%= t('tasks.sign_up') %></h1>
 
 <% if @user.errors.any? %>
   <ul>
@@ -10,20 +10,20 @@
 
 <%= form_for(@user) do |form| %>
   <div class="form-group">
-    <%= form.label :email, '信箱' %>
+    <%= form.label :email, t('tasks.email') %>
     <%= form.text_field :email, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :password, '密碼' %>
+    <%= form.label :password, t('tasks.password') %>
     <%= form.password_field :password, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :password, '密碼確認' %>
+    <%= form.label :password, t('tasks.password_confirmation') %>
     <%= form.password_field :password, class: "form-control", class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :nickname, "暱稱"%>
+    <%= form.label :nickname, t('tasks.nickname') %>
     <%= form.text_field :nickname, class: "form-control" %>
   </div>
-  <%= form.submit '註冊', class: "btn btn-primary" %>
+  <%= form.submit t('tasks.sign_up'), class: "btn btn-primary" %>
 <% end %>

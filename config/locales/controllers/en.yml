@@ -1,8 +1,19 @@
 en:
   tasks:
+    index: 
+      notice: "Please sign in first!"
     create:
       notice: "Task created successfully!"
     update:
       notice: "Task updated successfully!"
     destroy:
       notice: "Task deleted successfully!"
+  registrations:
+    create:
+      notice: "User created successfully!"
+  sessions:
+    create:
+      notice: "User sign in successfully!"
+      fail: "The account or password is wrong, please enter again!"
+    destroy:
+      notice: 'User sign out successfully!'

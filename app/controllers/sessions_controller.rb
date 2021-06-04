@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
   def create
     if User.login(params[:user])
       session[:user_session] = params[:user][:email]
-      redirect_to root_path, notice: '登入成功'
+      redirect_to root_path, notice: t('.notice')
     else
-      redirect_to session_path, notice: '帳號或密碼有誤，請重新輸入'
+      redirect_to session_path, notice: t('.fail')
     end
   end
 
   def destroy
     session[:user_session] = nil
-    redirect_to session_path, notice: '登出成功'
+    redirect_to session_path, notice: t('.notice')
   end
 
   private
