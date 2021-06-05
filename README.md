@@ -5,6 +5,7 @@
 * 可設定任務的開始、結束時間以及優先順序並排序
 * 自由切換全站中英文
 * 可設定任務狀態（待處理、進行中、已完成）
+* 會員登入功能，為登入時無法進入任務管理頁面，且使用者僅能看到自己的任務
 * 網站部署於[Heroku](http://taskwebsite.herokuapp.com/)
 * RSpec: Feature test and Model test
 * Bootstrap 4.6
