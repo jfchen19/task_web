@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   belongs_to :user
 
   validates :title, :subject, :start_time, :end_time, :priority, presence: true
+  validates :title, uniqueness: {scope: :user_id}
   validate :end_time_after_start_time
 
   scope :search_task, -> (keyword) { where("title LIKE ? OR subject LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword }
