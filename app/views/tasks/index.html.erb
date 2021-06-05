@@ -2,7 +2,16 @@
 
 <br>
 
-<%= render 'form', task: @task %>
+  <%= render 'form', task: @task %>
+
+<br>
+
+  <form class="form-inline my-2 my-lg-0">
+      <%= form_tag root_path, method: :get do %>
+        <%= text_field_tag "keyword", nil, placeholder: t('tasks.search_by_title_or_subject'), class: "form-control mr-sm-2" %>
+        <%= submit_tag t('tasks.search'), class: "search btn btn-outline-success my-2 my-sm-0" %>
+      <% end %>
+  </form>
 
 <br>
 

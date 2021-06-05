@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :task do
+    user
     title { Faker::Lorem.sentence }
     subject { Faker::Lorem.paragraphs }
     priority { rand(0..2) }

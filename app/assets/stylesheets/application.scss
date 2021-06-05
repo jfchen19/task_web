@@ -6,7 +6,7 @@ body {
   display: inline;
   color: red;
   
-  input[type=text], input[type=datetime-local] {
+  input[type=text], input[type=datetime-local], input[type=password] {
     border: 1px solid red;
   }
 }

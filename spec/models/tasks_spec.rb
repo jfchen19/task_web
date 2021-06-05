@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
+  describe 'associations' do
+    it { should belong_to(:user).class_name('User') }
+  end
+
   describe "task data input" do
     it { should validate_presence_of :title }
     it { should validate_presence_of :subject }
     it { should validate_presence_of :start_time }
     it { should validate_presence_of :end_time }
+    it { should validate_presence_of :priority }
+    it { should validate_uniqueness_of(:title).scoped_to(:user_id) }
 
     it 'end time after end time' do
       task_with_valid_input = FactoryBot.build(:task)

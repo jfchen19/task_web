@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper_method :current_user
   before_action :set_locale
  
   def set_locale
@@ -7,5 +8,10 @@ class ApplicationController < ActionController::Base
     end
   
     I18n.locale = session[:locale] || I18n.default_locale
+  end
+
+  private
+  def current_user
+    User.find_by(email: session[:user_session])
   end
 end

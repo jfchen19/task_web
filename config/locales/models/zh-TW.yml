@@ -8,6 +8,11 @@ zh-TW:
         subject: "主旨"
         start_time: "開始時間"
         end_time: "結束時間"
+      user:
+        email: "信箱"
+        password: "密碼"
+        password_confirmation: "密碼確認"
+        nickname: "暱稱"
     errors:
       models:
         task:
