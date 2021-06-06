@@ -46,3 +46,10 @@ zh-TW:
     password_confirmation: "密碼確認"
     nickname: "暱稱"
     edit_user: "資料修改"
+  admin:
+    user_management: "使用者管理頁面"
+    nickname: "暱稱"
+    email: "信箱"
+    quantity: "數量"
+    administrator: "管理員"
+    create: "建立使用者"

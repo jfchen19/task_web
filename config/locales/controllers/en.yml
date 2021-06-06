@@ -19,3 +19,7 @@ en:
       fail: "The account or password is wrong, please enter again!"
     destroy:
       notice: 'User sign out successfully!'
+  admin:
+    users:
+      create:
+        notice: "User created successfully!"

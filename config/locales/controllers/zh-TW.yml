@@ -19,3 +19,7 @@ zh-TW:
       fail: "帳號或密碼有誤，請重新輸入！"
   destroy:
     notice: '會員登出成功！'
+  admin:
+    users:
+      create:
+        notice: "會員建立成功！"

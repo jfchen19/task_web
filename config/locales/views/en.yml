@@ -45,3 +45,11 @@ en:
     password: "Password"
     nickname: "Nickname"
     edit_user: "Edit information"
+  admin:
+    user_management: "User Management"
+    nickname: "Nickname"
+    email: "Email"
+    quantity: "Quantity"
+    administrator: "Administrator"
+    create: "Create User"
+

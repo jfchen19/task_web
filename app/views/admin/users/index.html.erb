@@ -1,0 +1,28 @@
+<h1><%= t('admin.user_management') %></h1>
+
+<button type="button" class="btn btn-primary btn-sm"><%= link_to t('admin.create'), new_admin_user_path %></button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><%= t('admin.nickname') %></th>
+      <th scope="col"><%= t('admin.email') %></th>
+      <th scope="col"><%= t('admin.quantity') %></th>
+      <th scope="col"><%= t('admin.administrator') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.nickname %></td>
+        <td><%= user.email %></td>
+        <td><%= user.tasks.size %></td>
+        <td><%= user.admin %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <%= paginate @users %>
+</div>

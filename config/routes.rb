@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "tasks#index"
+
   resources :tasks do
     member do
       get :start
@@ -15,5 +16,10 @@ Rails.application.routes.draw do
     get '/sign_in', action: 'new'
     post 'sign_in', action: 'create'
     delete 'sign_out', action: 'destroy'
+  end
+
+  namespace :admin do
+    resources :users
+    root "users#index"
   end
 end
