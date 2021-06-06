@@ -52,4 +52,6 @@ en:
     quantity: "Quantity"
     administrator: "Administrator"
     create: "Create User"
-
+    options: "Options"
+    edit: "Edit"
+    edit_user: "Edit User Information"

@@ -22,4 +22,6 @@ zh-TW:
   admin:
     users:
       create:
-        notice: "會員建立成功！"
+        notice: "使用者建立成功！"
+      update:
+        notice: "使用者資料修改成功！"
