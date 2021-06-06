@@ -25,3 +25,5 @@ en:
         notice: "User created successfully!"
       update:
         notice: "User information updated successfully!"
+      destroy:
+        notice: "User deleted successfully!"

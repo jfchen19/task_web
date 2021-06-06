@@ -55,3 +55,6 @@ en:
     options: "Options"
     edit: "Edit"
     edit_user: "Edit User Information"
+    delete: "Delete"
+    users:
+      are_you_sure: "Are you sure?"

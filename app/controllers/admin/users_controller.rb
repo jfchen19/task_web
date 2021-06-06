@@ -1,8 +1,8 @@
 class Admin::UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update]
+  before_action :find_user, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.all.includes(:tasks).page(params[:page]).per(5)
+    @users = User.all.includes(:tasks).order(id: :asc).page(params[:page]).per(5)
   end
 
   def new
@@ -28,6 +28,11 @@ class Admin::UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user.destroy if @user
+    redirect_to admin_root_path, notice: t('.notice')
   end
 
   private
