@@ -21,19 +21,11 @@
       </li>
 
         <% if current_user %>
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= current_user.nickname %>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to t('tasks.edit_user'), edit_users_path, class: "dropdown-item" %>
-            <%= link_to "刪除會員", '#', class: "dropdown-item" %>
-          </div>
-        </li>
-          <%= link_to t('tasks.sign_out'), logout_path, medthod: 'delete', class: "nav-link" %>
+          <%= link_to current_user.nickname, edit_users_path, class: "nav-link" %>
+          <%= link_to t('users.sign_out'), sign_out_users_path, method: 'delete', class: "nav-link" %>
         <% else %>
-            <%= link_to t('tasks.sign_up'), sign_up_users_path, class: "nav-link" %>  
-            <%= link_to t('tasks.sign_in'), session_path, class: "nav-link" %>  
+          <%= link_to t('users.sign_up'), sign_up_users_path, class: "nav-link" %>  
+          <%= link_to t('users.sign_in'), sign_in_users_path, class: "nav-link" %>  
         <% end %>
     </ul>
   </div>

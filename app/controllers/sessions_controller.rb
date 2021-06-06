@@ -8,13 +8,13 @@ class SessionsController < ApplicationController
       session[:user_session] = params[:user][:email]
       redirect_to root_path, notice: t('.notice')
     else
-      redirect_to session_path, notice: t('.fail')
+      redirect_to sign_in_users_path, notice: t('.fail')
     end
   end
 
   def destroy
     session[:user_session] = nil
-    redirect_to session_path, notice: t('.notice')
+    redirect_to sign_in_users_path, notice: t('.notice')
   end
 
   private

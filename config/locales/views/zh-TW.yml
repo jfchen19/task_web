@@ -37,6 +37,7 @@ zh-TW:
       high: "高"
     sort_by_priority_asc: "依優先順序從低到高排序"
     sort_by_priority_desc: "依優先順序從高到低排序"
+  users:
     sign_up: "註冊"
     sign_in: "登入"
     sign_out: "登出"

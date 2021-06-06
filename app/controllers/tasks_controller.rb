@@ -6,7 +6,7 @@ class TasksController < ApplicationController
       task_index
       @task = Task.new
     else
-      redirect_to session_path, notice: t('.notice')
+      redirect_to sign_in_users_path, notice: t('.notice')
     end
   end
 

@@ -37,6 +37,7 @@ en:
       high: "High"
     sort_by_priority_asc: "Sort by Priority: ASC"
     sort_by_priority_desc: "Sort by Priority: DESC"
+  users:
     sign_up: "Sign Up"
     sign_in: "Sign In"
     sign_out: "Sign Out"

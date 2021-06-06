@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to session_path, notice: t('.notice')
+      redirect_to sign_in_users_path, notice: t('.notice')
     else
       render :new
     end
