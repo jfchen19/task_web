@@ -6,8 +6,8 @@ RSpec.describe Task, type: :feature do
 
   before do
     visit sign_in_users_path
-    fill_in I18n.t('tasks.email'), with: user.email
-    fill_in I18n.t('tasks.password'), with: password
+    fill_in I18n.t('users.email'), with: user.email
+    fill_in I18n.t('users.password'), with: password
     find('input[type="submit"]').click
   end
   
