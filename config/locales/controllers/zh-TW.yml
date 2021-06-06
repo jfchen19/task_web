@@ -11,6 +11,8 @@ zh-TW:
   registrations:
     create:
       notice: "會員註冊成功！"
+    update:
+      notice: "會員資料修改成功！"
   sessions:
     create:
       notice: "會員登入成功！"

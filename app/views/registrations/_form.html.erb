@@ -1,0 +1,27 @@
+<% if @user.errors.any? %>
+  <ul>
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for(user, url: users_path) do |form| %>
+  <div class="form-group">
+    <%= form.label :email, t('tasks.email') %>
+    <%= form.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :password, t('tasks.password') %>
+    <%= form.password_field :password, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :password, t('tasks.password_confirmation') %>
+    <%= form.password_field :password, class: "form-control", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :nickname, t('tasks.nickname') %>
+    <%= form.text_field :nickname, class: "form-control" %>
+  </div>
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

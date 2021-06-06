@@ -11,6 +11,8 @@ en:
   registrations:
     create:
       notice: "User created successfully!"
+    update:
+      notice: "User information updated successfully!"
   sessions:
     create:
       notice: "User sign in successfully!"

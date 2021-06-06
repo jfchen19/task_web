@@ -44,3 +44,4 @@ zh-TW:
     password: "密碼"
     password_confirmation: "密碼確認"
     nickname: "暱稱"
+    edit_user: "資料修改"
