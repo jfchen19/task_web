@@ -56,5 +56,6 @@ en:
     edit: "Edit"
     edit_user: "Edit User Information"
     delete: "Delete"
+    tasks_list: "Tasks List"
     users:
       are_you_sure: "Are you sure?"

@@ -15,7 +15,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.nickname %></td>
+        <td><%= link_to user.nickname, admin_user_path(user) %></td>
         <td><%= user.email %></td>
         <td><%= user.tasks.size %></td>
         <td><%= user.admin %></td>

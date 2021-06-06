@@ -57,5 +57,6 @@ zh-TW:
     edit: "編輯"
     edit_user: "編輯會員資料"
     delete: "刪除"
+    tasks_list: "任務列表"
     users:
       are_you_sure: "確定要刪除嗎?"

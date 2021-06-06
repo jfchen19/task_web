@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update, :destroy]
+  before_action :find_user, except: [:index, :new, :create]
 
   def index
     @users = User.all.includes(:tasks).order(id: :asc).page(params[:page]).per(5)
@@ -7,6 +7,10 @@ class Admin::UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def show
+    @tasks = @user.tasks.all.includes(:user).page(params[:page]).per(5)
   end
 
   def create
