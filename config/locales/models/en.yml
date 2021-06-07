@@ -32,4 +32,4 @@ en:
               blank: 'CAN NOT BE BLANK!'
             nickname:
               blank: 'CAN NOT BE BLANK!'
-
+            last_admin: "You are last administrator!"
