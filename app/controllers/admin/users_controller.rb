@@ -35,12 +35,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @tasks = Task.where(user_id: @user.id)
-    @tasks.each do |task|
-      task.destroy
+    if @user.destroy
+      redirect_to admin_root_path, notice: t('.notice')
+    else
+      redirect_to admin_root_path, alert: @user.errors.full_messages.to_sentence
     end
-    @user.destroy
-    redirect_to admin_root_path, notice: t('.notice')
   end
 
   private

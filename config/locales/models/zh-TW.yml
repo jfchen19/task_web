@@ -27,3 +27,6 @@ zh-TW:
             end_time:
               blank: '不能為空白！'
             end_time_after_start_time: '不能早於開始時間！'
+        user:
+          attributes:
+            last_admin: "你是最後一位管理員！"
