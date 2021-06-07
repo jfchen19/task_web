@@ -2,7 +2,7 @@
 
 <br>
 
-  <%= render 'form', task: @task %>
+<button type="button" class="index btn btn-primary "><%= link_to "新增任務", new_task_path %></button>
 
 <br>
 
@@ -15,15 +15,15 @@
 
 <br>
 
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_asc'), root_path(order_by_created_time: "asc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_desc'), root_path(order_by_created_time: "desc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_asc'), root_path(order_by_end_time: "asc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_desc'), root_path(order_by_end_time: "desc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_asc'), root_path(order_by_priority: "asc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_desc'), root_path(order_by_priority: "desc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_asc'), root_path(order_by_created_time: "asc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_desc'), root_path(order_by_created_time: "desc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_asc'), root_path(order_by_end_time: "asc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_desc'), root_path(order_by_end_time: "desc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_asc'), root_path(order_by_priority: "asc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_desc'), root_path(order_by_priority: "desc") %></button>
 
 <div class="btn-group">
-  <button type="button" class="btn btn-primary btn-sm dropdown-toggle search_by_state" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="index btn btn-primary btn-sm dropdown-toggle search_by_state" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <%= t('tasks.search_by_state') %>
   </button>
   <div class="dropdown-menu">

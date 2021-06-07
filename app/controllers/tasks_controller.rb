@@ -1,13 +1,16 @@
 class TasksController < ApplicationController
-  before_action :find_task, except: [:index, :create]
+  before_action :find_task, except: [:index, :new, :create]
 
   def index
     if current_user.present?
       task_index
-      @task = Task.new
     else
       redirect_to sign_in_users_path, notice: t('.notice')
     end
+  end
+  
+  def new
+    @task = Task.new
   end
 
   def show
@@ -19,8 +22,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to '/', notice: t('.notice')
     else
-      task_index
-      render :index
+      render :new
     end
   end
 
