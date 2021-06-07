@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :taggings
+  has_many :tags, through: :taggings, dependent: :destroy
 
   validates :title, :subject, :start_time, :end_time, :priority, presence: true
   validates :title, uniqueness: {scope: :user_id}
@@ -28,6 +30,18 @@ class Task < ApplicationRecord
     if end_time < start_time
       errors.add(:end_time, I18n.t('activerecord.errors.models.task.attributes.end_time_after_start_time'))
       # TODO 這裡的錯誤訊息用英文寫死，翻譯的話到 view 再翻譯
+    end
+  end
+
+  # Getter
+  def tag_list
+    tags.map{ |t| t.name }.join(',')
+  end
+
+  # Setter
+  def tag_list=(names)
+    self.tags = names.split(',').map do |name|
+      Tag.where(name: name.strip).first_or_create  # first_or_create：如果沒有的話就建立並存入資料庫
     end
   end
 

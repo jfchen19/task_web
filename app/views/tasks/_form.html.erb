@@ -22,5 +22,8 @@
   <%= form.label :end_time, t('tasks.end_time') %>
   <%= form.datetime_field :end_time %>
 
+  <%= form.label :tag_list, "標籤" %>
+  <%= form.text_field :tag_list , placeholder: "以 , 間隔標籤" %>
+
   <%= form.submit class: "task" %>
 <% end %>

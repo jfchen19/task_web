@@ -47,6 +47,7 @@
       <th scope="col"><%= t('tasks.start_time') %></th>
       <th scope="col"><%= t('tasks.end_time') %></th>
       <th scope="col"><%= t('tasks.state') %></th>
+      <th scope="col">標籤</th>
       <th scope="col"><%= t('tasks.options') %></th>
     </tr>
   </thead>
@@ -61,6 +62,7 @@
         <td><%= task.start_time.strftime("%Y / %b / %d %X") %></td>
         <td><%= task.end_time.strftime("%Y / %b / %d %X") %></td>
         <td><%= t("tasks.task_state.#{task.state}") %></td>
+        <td><%= task.tag_list %></td>
         <td>
         <%= link_to t('tasks.start'), start_task_path(task) if task.state == 'pending' %>
         <%= link_to t('tasks.complete'), complete_task_path(task) if task.state == 'processing' %>
