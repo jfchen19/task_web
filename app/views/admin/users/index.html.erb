@@ -1,0 +1,33 @@
+<h1><%= t('admin.user_management') %></h1>
+
+<button type="button" class="btn btn-primary btn-sm"><%= link_to t('admin.create'), new_admin_user_path %></button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><%= t('admin.nickname') %></th>
+      <th scope="col"><%= t('admin.email') %></th>
+      <th scope="col"><%= t('admin.quantity') %></th>
+      <th scope="col"><%= t('admin.administrator') %></th>
+      <th scope="col"><%= t('admin.options')%></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.nickname, admin_user_path(user) %></td>
+        <td><%= user.email %></td>
+        <td><%= user.tasks.size %></td>
+        <td><%= user.admin %></td>
+        <td>
+          <%= link_to t('admin.edit'), edit_admin_user_path(user) %>
+          <%= link_to t('admin.delete'), admin_user_path(user), method: 'delete', data: { confirm: t('admin.users.are_you_sure') } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <%= paginate @users %>
+</div>

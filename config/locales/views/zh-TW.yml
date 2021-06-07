@@ -37,6 +37,7 @@ zh-TW:
       high: "高"
     sort_by_priority_asc: "依優先順序從低到高排序"
     sort_by_priority_desc: "依優先順序從高到低排序"
+  users:
     sign_up: "註冊"
     sign_in: "登入"
     sign_out: "登出"
@@ -44,3 +45,18 @@ zh-TW:
     password: "密碼"
     password_confirmation: "密碼確認"
     nickname: "暱稱"
+    edit_user: "資料修改"
+  admin:
+    user_management: "使用者管理頁面"
+    nickname: "暱稱"
+    email: "信箱"
+    quantity: "數量"
+    administrator: "管理員"
+    create: "建立使用者"
+    options: "選項"
+    edit: "編輯"
+    edit_user: "編輯會員資料"
+    delete: "刪除"
+    tasks_list: "任務列表"
+    users:
+      are_you_sure: "確定要刪除嗎?"

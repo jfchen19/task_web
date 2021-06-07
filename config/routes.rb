@@ -1,16 +1,25 @@
 Rails.application.routes.draw do
   root "tasks#index"
+
   resources :tasks do
     member do
       get :start
       get :complete
     end
   end
+  
+  resource :users, controller: 'registrations', only: [:create, :edit, :update] do
+    get '/sign_up', action: 'new'
+  end
 
-  get 'users/sign_up', to: 'registrations#new', as: 'registration'
-  post '/users', to: 'registrations#create'
+  resource :users, controller: 'sessions', only: [] do
+    get '/sign_in', action: 'new'
+    post 'sign_in', action: 'create'
+    delete 'sign_out', action: 'destroy'
+  end
 
-  get 'users/sign_in', to: 'sessions#new', as: 'session'
-  post '/login', to: 'sessions#create', as: 'login'
-  get 'user/sign_out', to: 'sessions#destroy', as: 'logout'
+  namespace :admin do
+    resources :users
+    root "users#index"
+  end
 end

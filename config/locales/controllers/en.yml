@@ -11,9 +11,19 @@ en:
   registrations:
     create:
       notice: "User created successfully!"
+    update:
+      notice: "User information updated successfully!"
   sessions:
     create:
       notice: "User sign in successfully!"
       fail: "The account or password is wrong, please enter again!"
     destroy:
       notice: 'User sign out successfully!'
+  admin:
+    users:
+      create:
+        notice: "User created successfully!"
+      update:
+        notice: "User information updated successfully!"
+      destroy:
+        notice: "User deleted successfully!"
