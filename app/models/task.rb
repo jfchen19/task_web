@@ -8,6 +8,7 @@ class Task < ApplicationRecord
   validate :end_time_after_start_time
 
   scope :search_task, -> (keyword) { where("title LIKE ? OR subject LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword }
+  scope :search_by_tag, -> (tag) { joins(:tags).where("tags.name LIKE ?", "%#{tag}%") if tag }
   scope :search_by_state, -> (state) { where(state: state) if state }
 
   enum priority: { low: 0, medium: 1, high: 2 }

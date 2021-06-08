@@ -145,7 +145,8 @@ RSpec.describe Task, type: :feature do
       visit root_path
 
       find('input[name="keyword"]').set(task[:title])
-      click_button I18n.t('tasks.search')
+      find('input[name="title"]').click
+      # click_button I18n.t('tasks.search')
 
       expect(page).to have_content(task[:title])
       expect(page).to have_content(task[:subject])
@@ -155,7 +156,8 @@ RSpec.describe Task, type: :feature do
       visit root_path
 
       find('input[name="keyword"]').set(task[:subject])
-      click_button I18n.t('tasks.search')
+      find('input[name="title"]').click
+      # click_button I18n.t('tasks.search')
 
       expect(page).to have_content(task[:title])
       expect(page).to have_content(task[:subject])

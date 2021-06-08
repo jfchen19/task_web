@@ -26,6 +26,7 @@ en:
       pending: "Pending"
       processing: "Processing"
       completed: "Completed"
+    search_by_tag: "Search by tag"
     search_by_title_or_subject: "Search by title or subject"
     search: "Search"
     search_by_state: "Search by state"
@@ -37,6 +38,8 @@ en:
       high: "High"
     sort_by_priority_asc: "Sort by Priority: ASC"
     sort_by_priority_desc: "Sort by Priority: DESC"
+    tag: "Tag"
+    create_task: "Create Task"
   users:
     sign_up: "Sign Up"
     sign_in: "Sign In"

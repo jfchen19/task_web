@@ -26,7 +26,8 @@ zh-TW:
       pending: "待處理"
       processing: "進行中"
       completed: "已完成"
-    search_by_title_or_subject: "以標題或主旨進行搜尋"
+    search_by_tag: "以標籤搜尋"
+    search_by_title_or_subject: "以標題或主旨搜尋"
     search: "搜尋"
     search_by_state: "以狀態搜尋"
     all_tasks: "顯示所有任務"
@@ -37,6 +38,8 @@ zh-TW:
       high: "高"
     sort_by_priority_asc: "依優先順序從低到高排序"
     sort_by_priority_desc: "依優先順序從高到低排序"
+    tag: "標籤"
+    create_task: "新增任務"
   users:
     sign_up: "註冊"
     sign_in: "登入"

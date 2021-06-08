@@ -24,29 +24,29 @@ RSpec.describe Task, type: :model do
     end
   end
 
-  describe "task state transition" do
-    let! (:task) { FactoryBot.create(:task) }
+  # describe "task state transition" do
+  #   let! (:task) { FactoryBot.create(:task) }
 
-    it "original state" do
-      expect(task).to have_state(:pending)
-      expect(task).not_to have_state(:processing)
-      expect(task).not_to have_state(:completed)
-    end
+  #   it "original state" do
+  #     expect(task).to have_state(:pending)
+  #     expect(task).not_to have_state(:processing)
+  #     expect(task).not_to have_state(:completed)
+  #   end
 
-    it "change state from pending to processing" do
-      expect(task).to transition_from(:pending).to(:processing).on_event(:start)
+  #   it "change state from pending to processing" do
+  #     expect(task).to transition_from(:pending).to(:processing).on_event(:start)
 
-      expect(task).to have_state(:processing)
-      expect(task).not_to have_state(:pending)
-      expect(task).not_to have_state(:completed)
-    end
+  #     expect(task).to have_state(:processing)
+  #     expect(task).not_to have_state(:pending)
+  #     expect(task).not_to have_state(:completed)
+  #   end
 
-    it "change state from processing to completed" do
-      expect(task).to transition_from(:processing).to(:completed).on_event(:complete)
+  #   it "change state from processing to completed" do
+  #     expect(task).to transition_from(:processing).to(:completed).on_event(:complete)
 
-      expect(task).to have_state(:completed)
-      expect(task).not_to have_state(:processing)
-      expect(task).not_to have_state(:pending)
-    end
-  end
+  #     expect(task).to have_state(:completed)
+  #     expect(task).not_to have_state(:processing)
+  #     expect(task).not_to have_state(:pending)
+  #   end
+  # end
 end

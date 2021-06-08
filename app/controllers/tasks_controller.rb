@@ -6,6 +6,7 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.includes(:user, :tags)
                            .sort_tasks(params)
                            .search_task(params[:keyword])
+                           .search_by_tag(params[:tag])
                            .search_by_state(params[:state])
                            .page(params[:page]).per(5)
     else
