@@ -3,7 +3,11 @@ class TasksController < ApplicationController
 
   def index
     if current_user.present?
-      @tasks = current_user.tasks.includes(:user, :tags).sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
+      @tasks = current_user.tasks.includes(:user, :tags)
+                           .sort_tasks(params)
+                           .search_task(params[:keyword])
+                           .search_by_state(params[:state])
+                           .page(params[:page]).per(5)
     else
       redirect_to sign_in_users_path, notice: t('.notice')
     end
@@ -20,7 +24,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
-      redirect_to '/', notice: t('.notice')
+      redirect_to root_path, notice: t('.notice')
     else
       render :new
     end
@@ -31,7 +35,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to '/', notice: t('.notice')
+      redirect_to root_path, notice: t('.notice')
     else
       render :edit
     end
@@ -39,17 +43,17 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy if @task
-    redirect_to '/', notice: t('.notice')
+    redirect_to root_path, notice: t('.notice')
   end
 
   def start
     @task.start! if @task.may_start?
-    redirect_to '/'
+    redirect_to root_path
   end
 
   def complete
     @task.complete! if @task.may_complete?
-    redirect_to '/'
+    redirect_to root_path
   end
 
   private
