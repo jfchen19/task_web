@@ -41,6 +41,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_state
+    @task.update(state: params[:state])
+    redirect_to root_path
+  end
+
   def destroy
     @task.destroy if @task
     redirect_to root_path, notice: t('.notice')

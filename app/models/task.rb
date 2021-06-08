@@ -44,18 +44,4 @@ class Task < ApplicationRecord
       Tag.where(name: name.strip).first_or_create  # first_or_create：如果沒有的話就建立並存入資料庫
     end
   end
-
-  include AASM
-  aasm column: :state, no_direct_assigment: true do
-    state :pending, initial: true
-    state :processing, :completed
-
-    event :start do
-      transitions from: :pending, to: :processing
-    end
-
-    event :complete do
-      transitions from: :processing, to: :completed
-    end
-  end
 end

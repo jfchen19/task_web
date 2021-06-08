@@ -64,8 +64,8 @@
         <td><%= t("tasks.task_state.#{task.state}") %></td>
         <td><%= task.tag_list %></td>
         <td>
-        <%= link_to t('tasks.start'), start_task_path(task) if task.state == 'pending' %>
-        <%= link_to t('tasks.complete'), complete_task_path(task) if task.state == 'processing' %>
+        <%= link_to t('tasks.start'), update_state_task_path(task, state: :processing), method: :put if task.state == 'pending' %>
+        <%= link_to t('tasks.complete'), update_state_task_path(task, state: :completed), method: :put if task.state == 'processing' %>
         <%= link_to t('tasks.edit'), edit_task_path(task) %>
         <%= link_to t('tasks.delete'), task_path(task), method: 'delete', data: { confirm: t('tasks.are_you_sure') } %></td>
       </tr>
