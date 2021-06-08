@@ -17,7 +17,6 @@ RSpec.describe Task, type: :feature do
     end
 
     it "with title and subject" do
-      # byebug
       fill_in I18n.t('tasks.title'), with: "test title"
       fill_in I18n.t('tasks.subject'), with: "test subject"
       fill_in I18n.t('tasks.start_time'), with: "2021/Mar/08 22:29:00"

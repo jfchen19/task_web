@@ -3,14 +3,13 @@ class TasksController < ApplicationController
 
   def index
     if current_user.present?
-      task_index
+      @tasks = current_user.tasks.includes(:user, :tags).sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
     else
       redirect_to sign_in_users_path, notice: t('.notice')
     end
   end
   
   def new
-    # byebug
     @task = Task.new
   end
 
@@ -60,9 +59,5 @@ class TasksController < ApplicationController
   
   def task_params
     params.require(:task).permit(:title, :subject, :start_time, :end_time, :priority, :tag_list)
-  end
-
-  def task_index
-    @tasks = current_user.tasks.includes(:user).sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
   end
 end
