@@ -17,8 +17,8 @@ zh-TW:
     create:
       notice: "會員登入成功！"
       fail: "帳號或密碼有誤，請重新輸入！"
-  destroy:
-    notice: '會員登出成功！'
+    destroy:
+      notice: '會員登出成功！'
   admin:
     users:
       create:
@@ -27,3 +27,5 @@ zh-TW:
         notice: "使用者資料修改成功！"
       destroy:
         notice: "使用者刪除成功！"
+      admin_verify:
+        notice: "權限不足！"

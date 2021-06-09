@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :find_user, except: [:index, :new, :create]
+  before_action :admin_verify
 
   def index
     @users = User.all.includes(:tasks).order(id: :asc).page(params[:page]).per(5)
@@ -49,5 +50,12 @@ class Admin::UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def admin_verify
+    if current_user.admin      
+    else
+      redirect_to root_path, notice: t('admin.users.admin_verify.notice')
+    end
   end
 end
