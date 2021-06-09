@@ -1,13 +1,21 @@
 class TasksController < ApplicationController
-  before_action :find_task, except: [:index, :create]
+  before_action :find_task, except: [:index, :new, :create]
 
   def index
     if current_user.present?
-      task_index
-      @task = Task.new
+      @tasks = current_user.tasks.includes(:user, :tags)
+                           .sort_tasks(params)
+                           .search_task(params[:keyword])
+                           .search_by_tag(params[:tag])
+                           .search_by_state(params[:state])
+                           .page(params[:page]).per(5)
     else
       redirect_to sign_in_users_path, notice: t('.notice')
     end
+  end
+  
+  def new
+    @task = Task.new
   end
 
   def show
@@ -17,10 +25,9 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
-      redirect_to '/', notice: t('.notice')
+      redirect_to root_path, notice: t('.notice')
     else
-      task_index
-      render :index
+      render :new
     end
   end
 
@@ -29,25 +36,30 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to '/', notice: t('.notice')
+      redirect_to root_path, notice: t('.notice')
     else
       render :edit
     end
   end
 
+  def update_state
+    @task.update(state: params[:state])
+    redirect_to root_path
+  end
+
   def destroy
     @task.destroy if @task
-    redirect_to '/', notice: t('.notice')
+    redirect_to root_path, notice: t('.notice')
   end
 
   def start
     @task.start! if @task.may_start?
-    redirect_to '/'
+    redirect_to root_path
   end
 
   def complete
     @task.complete! if @task.may_complete?
-    redirect_to '/'
+    redirect_to root_path
   end
 
   private
@@ -56,10 +68,6 @@ class TasksController < ApplicationController
   end
   
   def task_params
-    params.require(:task).permit(:title, :subject, :start_time, :end_time, :priority)
-  end
-
-  def task_index
-    @tasks = current_user.tasks.includes(:user).sort_tasks(params).search_task(params[:keyword]).where("state LIKE ?", "%#{params[:search_by_state]}%").page(params[:page]).per(5)
+    params.require(:task).permit(:title, :subject, :start_time, :end_time, :priority, :tag_list)
   end
 end

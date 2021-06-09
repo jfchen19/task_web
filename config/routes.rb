@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     member do
       get :start
       get :complete
+      put :update_state
     end
   end
   

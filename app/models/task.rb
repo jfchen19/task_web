@@ -1,12 +1,15 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :taggings
+  has_many :tags, through: :taggings, dependent: :destroy
 
   validates :title, :subject, :start_time, :end_time, :priority, presence: true
   validates :title, uniqueness: {scope: :user_id}
   validate :end_time_after_start_time
 
   scope :search_task, -> (keyword) { where("title LIKE ? OR subject LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword }
-  scope :search_by_state, -> (state) { where("state LIKE ?", "%#{state}%") if state }
+  scope :search_by_tag, -> (tag) { joins(:tags).where("tags.name LIKE ?", "%#{tag}%") if tag }
+  scope :search_by_state, -> (state) { where(state: state) if state }
 
   enum priority: { low: 0, medium: 1, high: 2 }
 
@@ -31,17 +34,15 @@ class Task < ApplicationRecord
     end
   end
 
-  include AASM
-  aasm column: :state, no_direct_assigment: true do
-    state :pending, initial: true
-    state :processing, :completed
+  # Getter
+  def tag_list
+    tags.map{ |t| t.name }.join(',')
+  end
 
-    event :start do
-      transitions from: :pending, to: :processing
-    end
-
-    event :complete do
-      transitions from: :processing, to: :completed
+  # Setter
+  def tag_list=(names)
+    self.tags = names.split(',').map do |name|
+      Tag.where(name: name.strip).first_or_create  # first_or_create：如果沒有的話就建立並存入資料庫
     end
   end
 end

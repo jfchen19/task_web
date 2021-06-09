@@ -7,20 +7,35 @@
 <% end %>
 
 <%= form_for(task) do |form| %>
-  <%= form.label :title, t('tasks.title') %>
-  <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.label :title, t('tasks.title') %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
 
-  <%= form.label :subject, t('tasks.subject') %>
-  <%= form.text_field :subject %>
+  <div class="form-group">
+    <%= form.label :subject, t('tasks.subject') %>
+    <%= form.text_field :subject, class: "form-control" %>
+  </div>
 
-  <%= form.label :priority, t('tasks.priority') %>
-  <%= form.select :priority, options_for_select(Task.priorities.keys, "low") %>
+  <div class="form-group">
+    <%= form.label :priority, t('tasks.priority') %>
+    <%= form.select :priority, options_for_select(Task.priorities.keys, "low"), class: "form-control" %>
+  </div>
 
-  <%= form.label :start_time, t('tasks.start_time') %>
-  <%= form.datetime_field :start_time %>
+  <div class="form-group">
+    <%= form.label :start_time, t('tasks.start_time') %>
+    <%= form.datetime_field :start_time, class: "form-control" %>
+  </div>
 
-  <%= form.label :end_time, t('tasks.end_time') %>
-  <%= form.datetime_field :end_time %>
+  <div class="form-group">
+    <%= form.label :end_time, t('tasks.end_time') %>
+    <%= form.datetime_field :end_time, class: "form-control" %>
+  </div>
 
-  <%= form.submit class: "task" %>
+  <div class="form-group">
+    <%= form.label :tag_list, "標籤" %>
+    <%= form.text_field :tag_list , placeholder: "以 , 間隔標籤", class: "form-control" %>
+  </div>
+
+  <%= form.submit class: "task", class: "btn btn-primary" %>
 <% end %>

@@ -2,28 +2,37 @@
 
 <br>
 
-  <%= render 'form', task: @task %>
+<button type="button" class="index btn btn-primary "><%= link_to t('tasks.create_task'), new_task_path %></button>
 
 <br>
 
   <form class="form-inline my-2 my-lg-0">
       <%= form_tag root_path, method: :get do %>
         <%= text_field_tag "keyword", nil, placeholder: t('tasks.search_by_title_or_subject'), class: "form-control mr-sm-2" %>
-        <%= submit_tag t('tasks.search'), class: "search btn btn-outline-success my-2 my-sm-0" %>
+        <%= submit_tag t('tasks.search'), class: "search btn btn-outline-success my-2 my-sm-0", name: "title" %>
       <% end %>
   </form>
 
 <br>
 
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_asc'), root_path(order_by_created_time: "asc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_desc'), root_path(order_by_created_time: "desc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_asc'), root_path(order_by_end_time: "asc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_desc'), root_path(order_by_end_time: "desc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_asc'), root_path(order_by_priority: "asc") %></button>
-<button type="button" class="btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_desc'), root_path(order_by_priority: "desc") %></button>
+  <form class="form-inline my-2 my-lg-0">
+      <%= form_tag root_path, method: :get do %>
+        <%= text_field_tag "tag", nil, placeholder: t('tasks.search_by_tag'), class: "form-control mr-sm-2" %>
+        <%= submit_tag t('tasks.search'), class: "tag search btn btn-outline-success my-2 my-sm-0", name: "tag" %>
+      <% end %>
+  </form>
+
+<br>
+
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_asc'), root_path(order_by_created_time: "asc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_desc'), root_path(order_by_created_time: "desc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_asc'), root_path(order_by_end_time: "asc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_endtime_desc'), root_path(order_by_end_time: "desc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_asc'), root_path(order_by_priority: "asc") %></button>
+<button type="button" class="index btn btn-primary btn-sm"><%= link_to t('tasks.sort_by_priority_desc'), root_path(order_by_priority: "desc") %></button>
 
 <div class="btn-group">
-  <button type="button" class="btn btn-primary btn-sm dropdown-toggle search_by_state" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="index btn btn-primary btn-sm dropdown-toggle search_by_state" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <%= t('tasks.search_by_state') %>
   </button>
   <div class="dropdown-menu">
@@ -47,6 +56,7 @@
       <th scope="col"><%= t('tasks.start_time') %></th>
       <th scope="col"><%= t('tasks.end_time') %></th>
       <th scope="col"><%= t('tasks.state') %></th>
+      <th scope="col"><%= t('tasks.tag')%></th>
       <th scope="col"><%= t('tasks.options') %></th>
     </tr>
   </thead>
@@ -61,9 +71,10 @@
         <td><%= task.start_time.strftime("%Y / %b / %d %X") %></td>
         <td><%= task.end_time.strftime("%Y / %b / %d %X") %></td>
         <td><%= t("tasks.task_state.#{task.state}") %></td>
+        <td><%= task.tag_list %></td>
         <td>
-        <%= link_to t('tasks.start'), start_task_path(task) if task.state == 'pending' %>
-        <%= link_to t('tasks.complete'), complete_task_path(task) if task.state == 'processing' %>
+        <%= link_to t('tasks.start'), update_state_task_path(task, state: :processing), method: :put if task.state == 'pending' %>
+        <%= link_to t('tasks.complete'), update_state_task_path(task, state: :completed), method: :put if task.state == 'processing' %>
         <%= link_to t('tasks.edit'), edit_task_path(task) %>
         <%= link_to t('tasks.delete'), task_path(task), method: 'delete', data: { confirm: t('tasks.are_you_sure') } %></td>
       </tr>
