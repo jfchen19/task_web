@@ -53,9 +53,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def admin_verify
-    if current_user.admin      
-    else
-      redirect_to root_path, notice: t('admin.users.admin_verify.notice')
-    end
+    redirect_to root_path, notice: t('admin.users.admin_verify.notice') unless current_user.try(:admin)
   end
 end
