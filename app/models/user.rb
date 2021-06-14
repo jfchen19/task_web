@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   before_create :encrypt_password
+  before_update :encrypt_password
   before_destroy :can_destroy?, prepend: true
 
   validates :email, presence: :rue, 
