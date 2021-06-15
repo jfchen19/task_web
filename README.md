@@ -24,42 +24,42 @@
 ### Table schema
   * Users
 
-  | Column     | Data Type |
-  | --------   | --------  |
-  | email      | string    |
-  | password   | string    |
-  | nickname   | string    |
-  | admin      | boolean   |
-  | create_at  | datetime  |
-  | update_at  | datetime  |
+    | Column          | Data Type |
+    | --------        | --------  |
+    | email           | string    |
+    | password_digest | string    |
+    | nickname        | string    |
+    | admin           | boolean   |
+    | create_at       | datetime  |
+    | update_at       | datetime  |
 
   * Tasks
 
-  | Column     | Data Type |
-  | --------   | --------  |
-  | id         | integer   |
-  | title      | string    |
-  | subject    | string    |
-  | state      | string    |
-  | priority   | integer   |
-  | start_time | datetime  |
-  | end_time   | datetime  |
-  | create_at  | datetime  |
-  | update_at  | datetime  |
+    | Column     | Data Type |
+    | --------   | --------  |
+    | id         | integer   |
+    | title      | string    |
+    | subject    | string    |
+    | state      | string    |
+    | priority   | integer   |
+    | start_time | datetime  |
+    | end_time   | datetime  |
+    | create_at  | datetime  |
+    | update_at  | datetime  |
 
   * Tags
 
-  | Column     | Data Type |
-  | --------   | --------  |
-  | name       | string    |
-  | create_at  | datetime  |
-  | update_at  | datetime  |
+    | Column     | Data Type |
+    | --------   | --------  |
+    | name       | string    |
+    | create_at  | datetime  |
+    | update_at  | datetime  |
 
   * Taggings
 
-  | Column     | Data Type |
-  | --------   | --------  |
-  | tag_id     | bigint    |
-  | task_id    | bigint    |
-  | create_at  | datetime  |
-  | update_at  | datetime  |
+    | Column     | Data Type |
+    | --------   | --------  |
+    | tag_id     | bigint    |
+    | task_id    | bigint    |
+    | create_at  | datetime  |
+    | update_at  | datetime  |

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user
-    User.find_by(email: session[:user_session])
+    User.find_by(id: session[:user_session])
   end
 
   def record_not_found
