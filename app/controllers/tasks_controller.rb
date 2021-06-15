@@ -52,16 +52,6 @@ class TasksController < ApplicationController
     redirect_to root_path, notice: t('.notice')
   end
 
-  def start
-    @task.start! if @task.may_start?
-    redirect_to root_path
-  end
-
-  def complete
-    @task.complete! if @task.may_complete?
-    redirect_to root_path
-  end
-
   private
   def find_task
     @task = Task.find(params[:id])
